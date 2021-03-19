@@ -39,7 +39,7 @@ void draw()
   // Background update
   for (int i = 0 ; i <= bgseg ; i++)
   {
-    fill(70+1*i,70+3*i,100+1*i);
+    fill(70+1*i,70+1*i,100+3*i);
     noStroke();
     rect(0,displayHeight-displayHeight/bgseg*i,displayWidth,displayHeight/bgseg);
   }
