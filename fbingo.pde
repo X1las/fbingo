@@ -7,13 +7,13 @@ float circleScale = 1;
 boolean decr = false;
 int showNumb = 0;
 int numb;
-color ballCol = color(random(255),random(255),random(255));
+color ballCol = color(random(150),random(150),random(150));
 int bgseg = 20;
 PImage logo;
 PFont cursive, def;
 
 String BotBesked1 = "GAVEKORT TIL";
-String BotBesked2 = "Sushi2500, Cafe Freunde, Cafe Breeze";
+String BotBesked2 = "Sushi2500, Cafe Freunde";
 
 void setup()
 {
@@ -62,7 +62,7 @@ void draw()
   rect(rectX,rectY,rectW,rectH,10);
   
   // Drawing logo
-  int logoW = displayWidth/5;
+  float logoW = displayWidth/3.5;
   image(logo, displayWidth/2-logoW/2, 0, logoW , logoW/2);
   
   // Trigger updating
@@ -79,7 +79,7 @@ void draw()
     } else
     {
       showNumb = numb;
-      ballCol = color(random(255),random(255),random(255));
+      ballCol = color(random(150),random(150),random(150));
       decr = false;
     }
   } else
@@ -137,7 +137,9 @@ int numberPicker(int range , int[] array)
 
 void keyPressed()
 {
-  if (keyCode == 32)
+  println(keyCode);
+  println(key);
+  if (keyCode == 34 || keyCode == 33 || keyCode == 32)
   {
     trig = true;
     numb = numberPicker(balls,numbers);
