@@ -5,12 +5,15 @@ int showNumb = 0;                           // The numbers the balls show
 int numb;                                   // A temporary int for choosing numbers
 int bgseg = 20;                             // Segments of the background gradient
 int[] numbers = new int[balls];             // Bingo balls array
+int confCount = 150;
 
 boolean trig = false;                       // Key trigger boolean
 boolean decr = false;                       // Decrement trigger for ball spin animation
                                   
 float circleScale = 1;                      // Scaling value for the balls' size
 float colRange = 150;                       // Range of colors for random
+float confSize = 60;
+float confIncr = 1;
 
 color ballCol = color(random(colRange),random(colRange),random(colRange));        // Initial ball color from random
 
@@ -20,6 +23,8 @@ PFont cursive, def;                                                             
 
 String BotBesked1 = "GAVEKORT TIL";                                               // Message for bottom left of the screen
 String BotBesked2 = "Sushi2500, Cafe Freunde";                                    // Another message for bottom left of the screen
+
+confetti[] conf = new confetti[confCount];
 
 // Setup loop
 void setup()
@@ -31,6 +36,12 @@ void setup()
   logo = loadImage("images/bingo2.png");                                         // Loading logo image
   numbers[0] = 0;                                                                // Defining first number as 0
   fullScreen();                                                                  // Making program fullscreen
+  
+  /*for (int i = 0; i < confCount ; i++)
+  {
+    conf[i] = new confetti(random(confSize,displayWidth-confSize),random(confSize,displayHeight-confSize),confSize,random(360),random(100,600)/100,100,255);
+  }
+  */
 }
 
 void draw()
@@ -55,6 +66,14 @@ void draw()
     noStroke();
     rect(0,displayHeight-displayHeight/bgseg*i,displayWidth,displayHeight/bgseg);
   }
+  
+  // Making Confetti
+  /*for (int i = 0; i < confCount ; i++)
+  {
+    conf[i].updateConf(confIncr);
+    conf[i].drawConf();
+  }
+  */
   
   // Drawing text
   fill(200);
@@ -153,8 +172,8 @@ int numberPicker(int range , int[] array)
 
 void keyPressed()
 {
-  println(keyCode);
-  println(key);
+  //println(keyCode);
+  //println(key);
   if (keyCode == 34 || keyCode == 33 || keyCode == 32)
   {
     trig = true;
