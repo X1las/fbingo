@@ -1,36 +1,48 @@
 // Variables:
-int balls = 90;
-int ballCount = 1;
-int[] numbers = new int[balls];
-boolean trig = false;
-float circleScale = 1;
-boolean decr = false;
-int showNumb = 0;
-int numb;
-color ballCol = color(random(150),random(150),random(150));
-int bgseg = 20;
-PImage logo;
-PFont cursive, def;
+int balls = 90;                             // Amount of bingo balls in the game
+int ballCount = 1;                          // Amount of balls, starting at 1
+int showNumb = 0;                           // The numbers the balls show
+int numb;                                   // A temporary int for choosing numbers
+int bgseg = 20;                             // Segments of the background gradient
+int[] numbers = new int[balls];             // Bingo balls array
 
-String BotBesked1 = "GAVEKORT TIL";
-String BotBesked2 = "Sushi2500, Cafe Freunde";
+boolean trig = false;                       // Key trigger boolean
+boolean decr = false;                       // Decrement trigger for ball spin animation
+                                  
+float circleScale = 1;                      // Scaling value for the balls' size
+float colRange = 150;                       // Range of colors for random
 
+color ballCol = color(random(colRange),random(colRange),random(colRange));        // Initial ball color from random
+
+PImage logo;                                                                      // Image variable for the logo
+
+PFont cursive, def;                                                               // Fonts for cursive and default text
+
+String BotBesked1 = "GAVEKORT TIL";                                               // Message for bottom left of the screen
+String BotBesked2 = "Sushi2500, Cafe Freunde";                                    // Another message for bottom left of the screen
+
+// Setup loop
 void setup()
 {
+  // Defining fonts:
   def = createFont("Lucida Sans", 12);
   cursive = createFont("Brush Script MT Italic",12);
-  logo = loadImage("images/bingo2.png");
-  fullScreen();  
-  numbers[0] = 0;
+  
+  logo = loadImage("images/bingo2.png");                                         // Loading logo image
+  numbers[0] = 0;                                                                // Defining first number as 0
+  fullScreen();                                                                  // Making program fullscreen
 }
 
 void draw()
 {
   // Updating variables
+  
+  // Rectangle:
   float rectW = displayWidth/3;
   float rectH = displayHeight/1.7;
   float rectX = displayWidth/15;
   float rectY = displayHeight/2-rectH/2;
+  // Ball:
   float elipW = (rectW*0.8)*circleScale;
   float elipH = elipW;
   float elipX = rectX + elipW/2 + (rectW-elipW)/2;
@@ -46,10 +58,14 @@ void draw()
   
   // Drawing text
   fill(200);
+  
+  // Bottom-most text:
   textFont(cursive);
   textSize(displayWidth/30);
   textAlign(CENTER,BOTTOM);
   text(BotBesked2,displayWidth/3,displayHeight/1.03);
+  
+  // Text above bottom-most text
   textFont(def);
   textSize(displayWidth/45);
   textAlign(CENTER,BOTTOM);
@@ -75,18 +91,18 @@ void draw()
   {
     if (circleScale>0)
     {
-      circleScale-=.05;
+      circleScale-=.04;
     } else
     {
       showNumb = numb;
-      ballCol = color(random(150),random(150),random(150));
+      ballCol = color(random(colRange),random(colRange),random(colRange));
       decr = false;
     }
   } else
   {
     if (circleScale < 1)
     {
-      circleScale+=.05;
+      circleScale+=.04;
     } else
     {
       circleScale = 1;
